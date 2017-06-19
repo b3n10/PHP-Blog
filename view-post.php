@@ -31,6 +31,9 @@ if ($result === false) {
 }
 
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$bodyText = htmlEscape($row['body']);
+$paragraph = str_replace("\n", "<p></p>", $bodyText);
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,10 +46,10 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 			<?= htmlEscape($row['title']) ?>
 		</h2>
 		<div>
-			<?= htmlEscape($row['created_at']) ?>
+			<?= convertSQLDate($row['created_at']) ?>
 		</div>
 		<p>
-			<?= htmlEscape($row['body']) ?>
+			<?= $paragraph ?>
 		</p>
 	</body>
 </html>

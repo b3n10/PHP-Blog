@@ -29,7 +29,7 @@ if ($stmt === false) {
 		<?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
 		<h2><?= htmlEscape($row['title']) ?></h2>
 		<div>
-			<?= htmlEscape($row['created_at']) ?>
+			<?= convertSQLDate($row['created_at']) ?>
 		</div>
 		<p>
 			<?= htmlEscape($row['body']) ?>
