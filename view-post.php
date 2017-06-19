@@ -1,10 +1,14 @@
 <?php
-$root = __DIR__;
-$database = $root . "/data/data.sqlite";
-$dsn = "sqlite:" . $database;
+require_once "lib/common.php";
+
+if ( isset($_GET['post_id']) ) {
+	$postID = $_GET['post_id'];
+} else {
+	$postID = 0;
+}
 
 //connect, run, handle errors
-$pdo = new PDO($dsn);
+$pdo = getPDO();
 $stmt = $pdo->prepare(
 	'SELECT
 		title, created_at, body
@@ -19,7 +23,7 @@ if ($stmt === false) {
 }
 
 $result = $stmt->execute(
-	array('id' => 1)
+	array('id' => $postID)
 );	
 
 if ($result === false) {
@@ -31,19 +35,18 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>A blog application | <?= htmlspecialchars($row['title'], ENT_HTML5, "UTF-8") ?></title>
+		<title>A blog application | <?= htmlEscape($row['title']) ?></title>
 	</head>
 	<body>
-		<h1>Blog title</h1>
-		<p>A summary of the blog.</p>
+		<?php require 'templates/title.php' ?>
 		<h2>
-			<?= htmlspecialchars($row['title'], ENT_HTML5, "UTF-8") ?>
+			<?= htmlEscape($row['title']) ?>
 		</h2>
 		<div>
-			<?= htmlspecialchars($row['created_at'], ENT_HTML5, "UTF-8") ?>
+			<?= htmlEscape($row['created_at']) ?>
 		</div>
 		<p>
-			<?= htmlspecialchars($row['body'], ENT_HTML5, "UTF-8") ?>
+			<?= htmlEscape($row['body']) ?>
 		</p>
 	</body>
 </html>
