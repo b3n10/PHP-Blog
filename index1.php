@@ -30,6 +30,7 @@ if ($stmt === false) {
 		<h2><?= htmlEscape($row['title']) ?></h2>
 		<div>
 			<?= convertSQLDate($row['created_at']) ?>
+			( <?= countCommentsForPost($row['id']) ?> comments )
 		</div>
 		<p>
 			<?= htmlEscape($row['body']) ?>

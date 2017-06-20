@@ -51,5 +51,14 @@ $paragraph = str_replace("\n", "<p></p>", $bodyText);
 		<p>
 			<?= $paragraph ?>
 		</p>
+		<h3><?= countCommentsForPost($postID); ?> comments</h3>
+		<div>
+			<?php foreach (getCommentsForPost($postID) as $comments): ?>
+				Comment from <?= $comments['name'] ?> on <?= convertSQLDate($comments['created_at']) ?>
+				<p>
+					<?= $comments['text'] ?>
+				</p>
+			<?php endforeach ?>
+		</div>
 	</body>
 </html>
