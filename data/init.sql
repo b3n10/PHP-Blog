@@ -1,7 +1,9 @@
 /**
  * Database creation script
  */
+
 DROP TABLE IF EXISTS post;
+
 CREATE TABLE post (
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 	title VARCHAR NOT NULL,
@@ -19,9 +21,10 @@ post
 VALUES(
 	"Here's our first post",
 	"This is the body of the first post.
+
 	It is split into paragraphs.",
 	1,
-	date('now', '-2 months')
+	datetime('now', '-2 months', '-45 minutes', '+10 seconds')
 )
 ;
 
@@ -35,7 +38,7 @@ VALUES(
 	"This is the body of the second post.
 	This is another paragraph.",
 	1,
-	date('now', '-40 days')
+	datetime('now', '-40 days', '+815 minutes', '+37 seconds')
 )
 ;
 
@@ -49,11 +52,12 @@ VALUES(
 	"This is the body of the third post.
 	This is split into paragraphs.",
 	1,
-	date('now', '-13 days')
+	datetime('now', '-13 days', '+198 minutes', '+51 seconds')
 )
 ;
 
 DROP TABLE IF EXISTS comment;
+
 CREATE TABLE comment (
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 	post_id INTEGER NOT NULL,
@@ -70,7 +74,7 @@ comment
 )
 VALUES(
 	1,
-	date('now', '-10 days'),
+	datetime('now', '-10 days', '+231 minutes', '+7 seconds'),
 	'Jimmy',
 	'http://example.com/',
 	"This is Jimmy's contribution"
@@ -84,7 +88,7 @@ comment
 )
 VALUES(
 	1,
-	date('now', '-8 days'),
+	datetime('now', '-8 days', '+549 minutes', '+32 seconds'),
 	'Jonny',
 	'http://anotherexample.com/',
 	"This is a comment from Jonny"
