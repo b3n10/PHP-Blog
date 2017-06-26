@@ -14,11 +14,10 @@ CREATE TABLE post (
 );
 
 INSERT INTO
-post
-(
+post (
 	title, body, user_id, created_at
 )
-VALUES(
+VALUES (
 	"Here's our first post",
 	"This is the body of the first post.
 

@@ -19,7 +19,7 @@ function htmlEscape($key) {
 function convertSQLDate($key) {
 	$date = DateTime::createFromFormat("Y-m-d H:i:s", $key);
 	//return $key;
-	return $date->format("d M Y, H:i");
+	return $date->format("d M Y, H:i:s");
 }
 
 function redirectAndExit($script) {

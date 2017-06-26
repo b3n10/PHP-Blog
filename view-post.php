@@ -6,8 +6,7 @@ require_once 'lib/view-post.php';
 if (isset($_GET['post_id'])) {
 	$postId = $_GET['post_id'];
 }
-else
-{
+else {
 	// So we always have a post ID var defined
 	$postId = 0;
 }
@@ -19,7 +18,7 @@ $row = getPostRow($pdo, $postId);
 
 //If the post does not exist, let's deal with that here
 if (!$row) {
-	redirectAndExit('index.php?not-found=1');
+	redirectAndExit('index1.php?not-found=1');
 }
 
 // Swap carriage returns for paragraph breaks
@@ -45,8 +44,7 @@ $paraText = str_replace("\n", "</p><p>", $bodyText);
 			<?php echo convertSqlDate($row['created_at']) ?>
 		</div>
 		<p>
-		<?php // This is already escaped, so doesn't need further escaping ?>
-		<?php echo $paraText ?>
+			<?php echo $paraText // This is already escaped, so doesn't need further escaping ?>
 		</p>
 
 		<h3><?php echo countCommentsForPost($postId) ?> comments</h3>
